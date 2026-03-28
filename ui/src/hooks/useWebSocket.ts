@@ -2,10 +2,16 @@ import { useEffect } from 'react'
 import useReactWebSocket, { ReadyState } from 'react-use-websocket'
 
 import { useAudioStore } from '../stores/audioStore'
+import { useEngineStore } from '../stores/engineStore'
 import type { AudioAnalysis } from '../types/api'
 
 interface WebSocketPayload {
   audio?: AudioAnalysis
+  outputs?: { target: string; value: number }[]
+  engine?: { running: boolean; fps: number; tick_count: number }
+  console?: string
+  scene?: string | null
+  protocols?: Record<string, { connected: boolean; dry_run: boolean; messages_sent: number }>
 }
 
 const SOCKET_URL = 'ws://localhost:8765/ws'
@@ -26,6 +32,7 @@ function getConnectionState(readyState: ReadyState) {
 export function useWebSocket() {
   const setAnalysis = useAudioStore((state) => state.setAnalysis)
   const setConnectionState = useAudioStore((state) => state.setConnectionState)
+  const applyWsPayload = useEngineStore((state) => state.applyWsPayload)
 
   const { lastJsonMessage, readyState } = useReactWebSocket<WebSocketPayload>(SOCKET_URL, {
     share: true,
@@ -39,12 +46,22 @@ export function useWebSocket() {
   }, [readyState, setConnectionState])
 
   useEffect(() => {
-    if (!lastJsonMessage?.audio) {
+    if (!lastJsonMessage) {
       return
     }
 
-    setAnalysis(lastJsonMessage.audio)
-  }, [lastJsonMessage, setAnalysis])
+    if (lastJsonMessage.audio) {
+      setAnalysis(lastJsonMessage.audio)
+    }
+
+    applyWsPayload({
+      outputs: lastJsonMessage.outputs,
+      engine: lastJsonMessage.engine,
+      console: lastJsonMessage.console,
+      scene: lastJsonMessage.scene,
+      protocols: lastJsonMessage.protocols,
+    })
+  }, [lastJsonMessage, setAnalysis, applyWsPayload])
 
   return {
     isConnected: readyState === ReadyState.OPEN,

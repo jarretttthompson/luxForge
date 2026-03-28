@@ -15,10 +15,13 @@ export function BeatIndicator() {
 
   useEffect(() => {
     if (beat && !prevBeat.current) {
-      setFlash(true)
-      const t = window.setTimeout(() => setFlash(false), 140)
       prevBeat.current = true
-      return () => window.clearTimeout(t)
+      const t0 = window.setTimeout(() => setFlash(true), 0)
+      const t1 = window.setTimeout(() => setFlash(false), 140)
+      return () => {
+        window.clearTimeout(t0)
+        window.clearTimeout(t1)
+      }
     }
     if (!beat) {
       prevBeat.current = false
@@ -29,10 +32,13 @@ export function BeatIndicator() {
   const prevOnset = useRef(false)
   useEffect(() => {
     if (onset && !prevOnset.current) {
-      setOnsetFlash(true)
-      const t = window.setTimeout(() => setOnsetFlash(false), 90)
       prevOnset.current = true
-      return () => window.clearTimeout(t)
+      const t0 = window.setTimeout(() => setOnsetFlash(true), 0)
+      const t1 = window.setTimeout(() => setOnsetFlash(false), 90)
+      return () => {
+        window.clearTimeout(t0)
+        window.clearTimeout(t1)
+      }
     }
     if (!onset) {
       prevOnset.current = false

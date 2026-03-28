@@ -52,3 +52,35 @@ export interface SceneInput {
   mapping_rule_ids?: string[]
   transition_time_ms?: number
 }
+
+export interface SystemHealth {
+  status: string
+  engine_running: boolean
+  fps: number
+  tick_count: number
+  active_console: string
+  active_scene: string | null
+}
+
+export interface AudioDeviceInfo {
+  index: number
+  name: string
+  channels: number
+  sample_rate: number
+}
+
+export interface AudioConfig {
+  device_index: number | null
+  sample_rate: number
+  buffer_size: number
+  simulator_enabled: boolean
+  simulator_mode: string
+  simulator_bpm: number
+}
+
+export interface ProtocolStatusRow {
+  name: string
+  connected: boolean
+  dry_run: boolean
+  messages_sent: number
+}

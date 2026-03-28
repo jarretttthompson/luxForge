@@ -1,7 +1,12 @@
+import { Link } from 'react-router-dom'
+
 import { BandMeters } from '../components/audio/BandMeters'
 import { BeatIndicator } from '../components/audio/BeatIndicator'
 import { FFTDisplay } from '../components/audio/FFTDisplay'
 import { WaveformDisplay } from '../components/audio/WaveformDisplay'
+import { DMXMonitor } from '../components/output/DMXMonitor'
+import { EngineLiveSummary } from '../components/output/EngineLiveSummary'
+import { ProtocolStatus } from '../components/output/ProtocolStatus'
 import { useAudioStore } from '../stores/audioStore'
 
 export function DashboardPage() {
@@ -38,6 +43,10 @@ export function DashboardPage() {
         </span>
       </div>
 
+      <div className="mt-6">
+        <EngineLiveSummary />
+      </div>
+
       <div className="mt-8 grid gap-6 lg:grid-cols-2">
         <div className="lg:col-span-2">
           <FFTDisplay />
@@ -46,6 +55,22 @@ export function DashboardPage() {
         <BeatIndicator />
         <div className="lg:col-span-2">
           <BandMeters />
+        </div>
+        <div className="lg:col-span-2">
+          <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-gray-500">
+            Live output
+          </h3>
+          <div className="grid gap-6 lg:grid-cols-2">
+            <ProtocolStatus />
+            <DMXMonitor maxRows={8} />
+          </div>
+          <p className="mt-3 text-center text-xs text-gray-600">
+            Full channel list and fixture patch on the{' '}
+            <Link to="/fixtures" className="text-cyan-500/90 hover:text-cyan-400">
+              Fixtures
+            </Link>{' '}
+            page.
+          </p>
         </div>
       </div>
     </section>

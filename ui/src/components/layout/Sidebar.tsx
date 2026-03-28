@@ -24,8 +24,9 @@ export function Sidebar() {
             className={({ isActive }) =>
               [
                 'flex items-center gap-3 rounded-xl px-4 py-3 text-sm transition-colors',
+                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/35',
                 isActive
-                  ? 'bg-gray-800 text-white'
+                  ? 'bg-gray-800 text-white ring-1 ring-gray-700/80'
                   : 'text-gray-400 hover:bg-gray-900 hover:text-gray-100',
               ].join(' ')
             }
