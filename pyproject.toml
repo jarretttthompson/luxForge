@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=75.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lighting-console-thing"
+version = "0.1.0"
+description = "Audio-reactive lighting control system for Obsidian Onyx NX1"
+requires-python = ">=3.12"
+dependencies = [
+    "sounddevice>=0.5.0",
+    "numpy>=1.26.0",
+    "scipy>=1.12.0",
+    "python-osc>=1.9.0",
+    "stupidArtnet>=1.6.0",
+    "sacn>=1.9.0",
+    "python-rtmidi>=1.5.0",
+    "fastapi>=0.110.0",
+    "uvicorn[standard]>=0.27.0",
+    "aiosqlite>=0.20.0",
+    "pydantic>=2.6.0",
+    "pydantic-settings>=2.1.0",
+    "structlog>=24.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "httpx>=0.27.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
