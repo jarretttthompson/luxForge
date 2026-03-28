@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git init:*)",
+      "Bash(git branch:*)",
+      "Bash(pip install:*)",
+      "Bash(python3 -m pip install -e \".[dev]\")",
+      "Bash(python3 -m venv .venv)",
+      "Bash(source .venv/bin/activate)",
+      "Bash(pytest tests/test_audio/ -v)",
+      "Bash(python scripts/list_audio_devices.py)",
+      "Bash(pytest tests/test_audio/test_analyzer.py -v)",
+      "Bash(pytest tests/ -v)",
+      "Bash(git remote:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
+    ]
+  }
+}
