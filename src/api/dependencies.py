@@ -17,6 +17,9 @@ console = None
 adapters: list = []
 audio_source = None
 config = None
+scene_manager = None  # SceneManager, set during startup
+fixture_library = None  # FixtureLibrary, set during startup
+patch_manager = None  # PatchManager, set during startup
 
 
 def get_state() -> AppState:

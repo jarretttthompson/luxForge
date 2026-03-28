@@ -1,0 +1,16 @@
+{
+  "id": "generic_rgba",
+  "manufacturer": "Generic",
+  "name": "RGBA Fixture",
+  "modes": [
+    {
+      "name": "4 Channel",
+      "channels": [
+        {"offset": 0, "name": "Red", "channel_type": "RED"},
+        {"offset": 1, "name": "Green", "channel_type": "GREEN"},
+        {"offset": 2, "name": "Blue", "channel_type": "BLUE"},
+        {"offset": 3, "name": "Amber", "channel_type": "AMBER"}
+      ]
+    }
+  ]
+}

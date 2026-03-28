@@ -1,0 +1,13 @@
+{
+  "id": "generic_dimmer",
+  "manufacturer": "Generic",
+  "name": "Dimmer",
+  "modes": [
+    {
+      "name": "1 Channel",
+      "channels": [
+        {"offset": 0, "name": "Dimmer", "channel_type": "DIMMER"}
+      ]
+    }
+  ]
+}

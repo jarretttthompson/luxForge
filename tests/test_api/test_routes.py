@@ -11,6 +11,8 @@ from src.engine.state import AppState
 from src.mapping.engine import MappingEngine
 from src.mapping.parameters import ParameterRegistry
 from src.config import AppConfig
+from src.fixtures.library import FixtureLibrary
+from src.fixtures.patch import PatchManager
 
 
 @pytest.fixture(autouse=True)
@@ -29,6 +31,12 @@ def setup_deps():
     deps.adapters = []
     deps.audio_source = None
     deps.config = AppConfig()
+    deps.scene_manager = None
+
+    library = FixtureLibrary()
+    library.load_profiles()
+    deps.fixture_library = library
+    deps.patch_manager = PatchManager(library)
 
     yield
 
@@ -41,6 +49,9 @@ def setup_deps():
     deps.adapters = []
     deps.audio_source = None
     deps.config = None
+    deps.scene_manager = None
+    deps.fixture_library = None
+    deps.patch_manager = None
 
 
 @pytest.fixture
@@ -190,7 +201,44 @@ class TestSceneRoutes:
 
 
 class TestFixtureRoutes:
-    def test_list_profiles_placeholder(self, client):
+    def test_list_profiles(self, client):
         resp = client.get("/api/fixtures/profiles")
         assert resp.status_code == 200
-        assert resp.json()["profiles"] == []
+        assert len(resp.json()["profiles"]) == 10
+
+    def test_get_profile(self, client):
+        resp = client.get("/api/fixtures/profiles/generic_rgb")
+        assert resp.status_code == 200
+        assert resp.json()["name"] == "RGB Fixture"
+
+    def test_search_profiles(self, client):
+        resp = client.get("/api/fixtures/profiles/search?q=moving")
+        assert resp.status_code == 200
+        assert len(resp.json()["profiles"]) == 2
+
+    def test_get_empty_patch(self, client):
+        resp = client.get("/api/fixtures/patch")
+        assert resp.status_code == 200
+        assert resp.json()["entries"] == []
+
+    def test_add_patch_entry(self, client):
+        resp = client.post("/api/fixtures/patch", json={
+            "profile_id": "generic_rgb",
+            "mode_index": 0,
+            "universe": 1,
+            "start_address": 1,
+            "label": "Front Wash",
+        })
+        assert resp.status_code == 201
+        assert resp.json()["label"] == "Front Wash"
+
+    def test_patch_conflict(self, client):
+        client.post("/api/fixtures/patch", json={
+            "profile_id": "generic_rgb", "universe": 1,
+            "start_address": 1, "label": "A",
+        })
+        resp = client.post("/api/fixtures/patch", json={
+            "profile_id": "generic_rgb", "universe": 1,
+            "start_address": 2, "label": "B",
+        })
+        assert resp.status_code == 409

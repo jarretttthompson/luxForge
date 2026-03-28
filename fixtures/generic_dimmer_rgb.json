@@ -1,0 +1,16 @@
+{
+  "id": "generic_dimmer_rgb",
+  "manufacturer": "Generic",
+  "name": "Dimmer + RGB",
+  "modes": [
+    {
+      "name": "4 Channel",
+      "channels": [
+        {"offset": 0, "name": "Dimmer", "channel_type": "DIMMER"},
+        {"offset": 1, "name": "Red", "channel_type": "RED"},
+        {"offset": 2, "name": "Green", "channel_type": "GREEN"},
+        {"offset": 3, "name": "Blue", "channel_type": "BLUE"}
+      ]
+    }
+  ]
+}

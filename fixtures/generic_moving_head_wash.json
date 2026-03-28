@@ -1,0 +1,24 @@
+{
+  "id": "generic_moving_head_wash",
+  "manufacturer": "Generic",
+  "name": "Moving Head Wash",
+  "modes": [
+    {
+      "name": "12 Channel",
+      "channels": [
+        {"offset": 0, "name": "Pan", "channel_type": "PAN"},
+        {"offset": 1, "name": "Pan Fine", "channel_type": "PAN_FINE"},
+        {"offset": 2, "name": "Tilt", "channel_type": "TILT"},
+        {"offset": 3, "name": "Tilt Fine", "channel_type": "TILT_FINE"},
+        {"offset": 4, "name": "Speed", "channel_type": "SPEED"},
+        {"offset": 5, "name": "Dimmer", "channel_type": "DIMMER"},
+        {"offset": 6, "name": "Red", "channel_type": "RED"},
+        {"offset": 7, "name": "Green", "channel_type": "GREEN"},
+        {"offset": 8, "name": "Blue", "channel_type": "BLUE"},
+        {"offset": 9, "name": "White", "channel_type": "WHITE"},
+        {"offset": 10, "name": "Zoom", "channel_type": "ZOOM"},
+        {"offset": 11, "name": "Strobe", "channel_type": "STROBE"}
+      ]
+    }
+  ]
+}

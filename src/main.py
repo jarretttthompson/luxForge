@@ -25,6 +25,10 @@ from src.mapping.engine import MappingEngine
 from src.mapping.parameters import ParameterRegistry
 from src.protocols.base import ProtocolAdapter
 from src.protocols.osc_adapter import OSCAdapter
+from src.fixtures.library import FixtureLibrary
+from src.fixtures.patch import PatchManager
+from src.scenes.manager import SceneManager
+from src.scenes.storage import SceneStorage
 
 logger = structlog.get_logger()
 
@@ -225,6 +229,25 @@ async def run_app(args: argparse.Namespace) -> None:
     deps.audio_source = audio_source
     deps.config = config
 
+    # --- Scene manager ---
+    scene_storage = SceneStorage(db_path="luxforge.db")
+    scene_manager = SceneManager(
+        storage=scene_storage,
+        mapping_engine=mapping_engine,
+        console=console,
+        adapters=adapters,
+        event_bus=event_bus,
+    )
+    await scene_manager.init()
+    deps.scene_manager = scene_manager
+
+    # --- Fixture library + patch manager ---
+    fixture_library = FixtureLibrary()
+    fixture_library.load_profiles()
+    patch_manager = PatchManager(library=fixture_library)
+    deps.fixture_library = fixture_library
+    deps.patch_manager = patch_manager
+
     engine_loop = EngineLoop(
         audio_bus=audio_bus,
         mapping_engine=mapping_engine,
@@ -280,6 +303,7 @@ async def run_app(args: argparse.Namespace) -> None:
         await engine_loop.stop()
         await bridge.stop()
         audio_source.stop()
+        await scene_manager.close()
 
         for adapter in adapters:
             try:

@@ -1,0 +1,43 @@
+{
+  "id": "generic_moving_head_spot",
+  "manufacturer": "Generic",
+  "name": "Moving Head Spot",
+  "modes": [
+    {
+      "name": "16 Channel",
+      "channels": [
+        {"offset": 0, "name": "Pan", "channel_type": "PAN"},
+        {"offset": 1, "name": "Pan Fine", "channel_type": "PAN_FINE"},
+        {"offset": 2, "name": "Tilt", "channel_type": "TILT"},
+        {"offset": 3, "name": "Tilt Fine", "channel_type": "TILT_FINE"},
+        {"offset": 4, "name": "Speed", "channel_type": "SPEED"},
+        {"offset": 5, "name": "Dimmer", "channel_type": "DIMMER"},
+        {"offset": 6, "name": "Shutter", "channel_type": "SHUTTER"},
+        {"offset": 7, "name": "Color Wheel", "channel_type": "COLOR_WHEEL"},
+        {"offset": 8, "name": "Gobo", "channel_type": "GOBO"},
+        {"offset": 9, "name": "Prism", "channel_type": "PRISM"},
+        {"offset": 10, "name": "Focus", "channel_type": "FOCUS"},
+        {"offset": 11, "name": "Zoom", "channel_type": "ZOOM"},
+        {"offset": 12, "name": "Red", "channel_type": "RED"},
+        {"offset": 13, "name": "Green", "channel_type": "GREEN"},
+        {"offset": 14, "name": "Blue", "channel_type": "BLUE"},
+        {"offset": 15, "name": "White", "channel_type": "WHITE"}
+      ]
+    },
+    {
+      "name": "10 Channel",
+      "channels": [
+        {"offset": 0, "name": "Pan", "channel_type": "PAN"},
+        {"offset": 1, "name": "Tilt", "channel_type": "TILT"},
+        {"offset": 2, "name": "Speed", "channel_type": "SPEED"},
+        {"offset": 3, "name": "Dimmer", "channel_type": "DIMMER"},
+        {"offset": 4, "name": "Shutter", "channel_type": "SHUTTER"},
+        {"offset": 5, "name": "Color Wheel", "channel_type": "COLOR_WHEEL"},
+        {"offset": 6, "name": "Gobo", "channel_type": "GOBO"},
+        {"offset": 7, "name": "Red", "channel_type": "RED"},
+        {"offset": 8, "name": "Green", "channel_type": "GREEN"},
+        {"offset": 9, "name": "Blue", "channel_type": "BLUE"}
+      ]
+    }
+  ]
+}

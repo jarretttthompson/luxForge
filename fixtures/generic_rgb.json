@@ -1,0 +1,15 @@
+{
+  "id": "generic_rgb",
+  "manufacturer": "Generic",
+  "name": "RGB Fixture",
+  "modes": [
+    {
+      "name": "3 Channel",
+      "channels": [
+        {"offset": 0, "name": "Red", "channel_type": "RED"},
+        {"offset": 1, "name": "Green", "channel_type": "GREEN"},
+        {"offset": 2, "name": "Blue", "channel_type": "BLUE"}
+      ]
+    }
+  ]
+}

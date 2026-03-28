@@ -1,0 +1,28 @@
+{
+  "id": "generic_led_par",
+  "manufacturer": "Generic",
+  "name": "LED Par",
+  "modes": [
+    {
+      "name": "7 Channel",
+      "channels": [
+        {"offset": 0, "name": "Dimmer", "channel_type": "DIMMER"},
+        {"offset": 1, "name": "Red", "channel_type": "RED"},
+        {"offset": 2, "name": "Green", "channel_type": "GREEN"},
+        {"offset": 3, "name": "Blue", "channel_type": "BLUE"},
+        {"offset": 4, "name": "Strobe", "channel_type": "STROBE"},
+        {"offset": 5, "name": "Color Macro", "channel_type": "COLOR_MACRO"},
+        {"offset": 6, "name": "Mode", "channel_type": "MODE"}
+      ]
+    },
+    {
+      "name": "4 Channel",
+      "channels": [
+        {"offset": 0, "name": "Red", "channel_type": "RED"},
+        {"offset": 1, "name": "Green", "channel_type": "GREEN"},
+        {"offset": 2, "name": "Blue", "channel_type": "BLUE"},
+        {"offset": 3, "name": "Dimmer", "channel_type": "DIMMER"}
+      ]
+    }
+  ]
+}

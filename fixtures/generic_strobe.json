@@ -1,0 +1,14 @@
+{
+  "id": "generic_strobe",
+  "manufacturer": "Generic",
+  "name": "Strobe",
+  "modes": [
+    {
+      "name": "2 Channel",
+      "channels": [
+        {"offset": 0, "name": "Dimmer", "channel_type": "DIMMER"},
+        {"offset": 1, "name": "Strobe Speed", "channel_type": "STROBE"}
+      ]
+    }
+  ]
+}
