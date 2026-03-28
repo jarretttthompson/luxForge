@@ -1,0 +1,20 @@
+{
+  "name": "Obsidian Onyx NX1",
+  "version": "1.0",
+  "notes": "OSC address mappings for Onyx. Fader IDs = 100 + playback number. Button IDs vary by function.",
+  "playbacks": {
+    "count": 10,
+    "fader_address_template": "/Mx/fader/{id}",
+    "fader_id_offset": 100,
+    "go_address_template": "/Mx/button/{id}",
+    "go_id_offset": 4200,
+    "stop_address_template": "/Mx/button/{id}",
+    "stop_id_offset": 4100
+  },
+  "midi": {
+    "fader_cc_offset": 1,
+    "go_note_offset": 60,
+    "go_channel": 0,
+    "fader_channel": 0
+  }
+}
