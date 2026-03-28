@@ -35,6 +35,17 @@ class SACNAdapter(ProtocolAdapter):
         return "sacn"
 
     async def connect(self) -> None:
+        if self.dry_run:
+            # In dry_run mode, don't create a real sender — it spawns a
+            # background thread that tries to send broadcast packets.
+            self._sender = "dry_run"
+            logger.info(
+                "sacn_adapter_connected",
+                universe=self._universe,
+                dry_run=True,
+            )
+            return
+
         if sACNsender is None:
             logger.error(
                 "sacn_adapter_dependency_missing",
@@ -75,7 +86,7 @@ class SACNAdapter(ProtocolAdapter):
         sender = self._sender
         self._sender = None
 
-        if sender is None:
+        if sender is None or sender == "dry_run":
             logger.info("sacn_adapter_disconnected", universe=self._universe)
             return
 

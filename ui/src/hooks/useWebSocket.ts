@@ -1,5 +1,10 @@
 import { useEffect } from 'react'
-import useReactWebSocket, { ReadyState } from 'react-use-websocket'
+import reactUseWebSocket, { ReadyState } from 'react-use-websocket'
+
+// Handle CJS default export interop — the package exports `default` as a named property
+const useReactWebSocket = (typeof reactUseWebSocket === 'function'
+  ? reactUseWebSocket
+  : (reactUseWebSocket as unknown as { default: typeof reactUseWebSocket }).default) as typeof reactUseWebSocket
 
 import { useAudioStore } from '../stores/audioStore'
 import { useEngineStore } from '../stores/engineStore'
